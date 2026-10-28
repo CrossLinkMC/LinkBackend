@@ -1,5 +1,6 @@
 add_rules("mode.debug", "mode.release")
 
+add_repositories("miracleforest-repo https://github.com/MiracleForest/xmake-repo.git")
 add_repositories("levimc-repo https://github.com/LiteLDev/xmake-repo.git")
 
 option("target_type")
@@ -8,10 +9,8 @@ option("target_type")
     set_values("server", "client")
 option_end()
 
--- add_requires("levilamina x.x.x") for a specific version
--- add_requires("levilamina develop") to use develop version
--- please note that you should add bdslibrary yourself if using dev version
-add_requires("levilamina", {configs = {target_type = get_config("target_type")}})
+add_requires("levilamina 26.32.2")
+add_requires("nlohmann_json v3.12.0")
 
 add_requires("levibuildscript")
 
@@ -19,7 +18,7 @@ if not has_config("vs_runtime") then
     set_runtimes("MD")
 end
 
-target("my-mod") -- Change this to your mod name.
+target("LinkBackend")
     add_rules("@levibuildscript/linkrule")
     add_rules("@levibuildscript/modpacker")
     if is_plat("windows") then
@@ -41,7 +40,8 @@ target("my-mod") -- Change this to your mod name.
         )
         set_toolchains("clang-cl")
     end
-    add_packages("levilamina")
+    add_packages("levilamina", "nlohmann_json")
+    add_links("ws2_32")
     set_kind("shared")
     set_languages("c++20")
     set_symbols("debug")

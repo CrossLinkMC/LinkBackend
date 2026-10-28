@@ -1,7 +1,9 @@
 {
-    "name": "${modName}",
-    "entry": "${modFile}",
-    "version": "${modVersion}",
+    "name": "LinkBackend",
+    "entry": "LinkBackend.dll",
+    "version": "0.1.0",
     "type": "native",
-    "platform": "${modPlatform}"
+    "platform": "server",
+    "author": "xianyubb",
+    "description": "CrossLink gateway agent: keeps the control channel to the CrossLink gateway and exports an API for other LeviLamina mods."
 }
